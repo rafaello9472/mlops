@@ -1,0 +1,22 @@
+name: GCP GitHub Actions test
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+    - name: Configure Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8.13'
+    - name: Install dependencies
+      run: |
+        make install
+    - name: Lint
+      run: |
+        make lint
+    - name: Test
+      run: |
+        make test 
